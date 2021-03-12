@@ -1,2 +1,12 @@
 var textNode = document.getElementById("randomWord");
-textNode = Math.floor(Math.random() * 100);
+
+var wordList = [
+	"alluring",
+	"beautiful",
+	"radiant"
+];
+
+function generateWord() {
+	textNode.innerHTML = wordList[Math.floor(Math.random() * wordList.length)];
+}
+generateWord();
