@@ -25,13 +25,12 @@ p {
 
 input {
     font-size: 30px;
-	tcolor: #ffffff;
     margin-bottom: 1%;
     margin-top: 0%;
 	font-family: 'Roboto Slab', serif;
 }
 
 body {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto Slab', serif !important;
     background-color: #353232 !important;
 }
