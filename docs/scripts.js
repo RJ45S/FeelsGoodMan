@@ -47,16 +47,44 @@ var wordList = {
 	"wonderful": "inspiring delight, pleasure, or admiration"
 };
 
+var generating = false;
+var keys = Object.keys(wordList);
 function generateWord() {
-	var keys = Object.keys(wordList);
+	// Only generate 1 word at a time
+	if (generating)
+		return;
+	generating = true;
+	
 	var word = lastWord;
 	// Avoid same word twice in a row
 	while (word == lastWord) {
 		word = Math.floor(Math.random() * keys.length);
 	}
 	
-	wordNode.innerHTML = keys[word];
-	defNode.innerHTML = wordList[keys[word]];
+	if (document.getElementById("animCheck").checked) {
+		wordNode.innerHTML = keys[word];
+		defNode.innerHTML = wordList[keys[word]];
+		generating = false;
+		defNode.style.visibility = "visible";
+		return;
+	}
+	
+	defNode.style.visibility = "hidden";
+	var randomFunc = setInterval(randomString, 70);
+	
+    setTimeout(function () {
+		wordNode.innerHTML = keys[word];
+		defNode.innerHTML = wordList[keys[word]];
+		generating = false;
+		clearInterval(randomFunc);
+		defNode.style.visibility = "visible";
+    }, 2000);
 	lastWord = word;
 }
+
+function randomString() {
+	var word = Math.floor(Math.random() * keys.length);
+	wordNode.innerHTML = wordNode.innerHTML = keys[word];
+}
+
 generateWord();
